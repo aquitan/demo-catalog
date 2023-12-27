@@ -1,209 +1,72 @@
-var swiper = new Swiper(".mySwiperBanner", {
+const toggleCatalogSidebarItem = () => {
+    const items = document.querySelectorAll('.catalog-sidebar-item')
+
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            console.log('adfasdf', item)
+            if (item.children.length > 1) {
+                item.classList.toggle('catalog-sidebar-subitems-active')
+            }
+            else {
+                return
+            }
+        })
+    })
+}
+
+toggleCatalogSidebarItem()
+
+var swiper = new Swiper(".mySwiperCatalogCard", {
     pagination: {
       el: ".swiper-pagination",
     },
+    spaceBetween: 10
   });
-$('.brand-switch').click(function(){
-    var tab_id = $(this).attr('data-tab');
+// const togleItemTimePicker = (hide = false) => {
 
-    $('.brand-switch').removeClass('current-brand');
-    $('.brand-content').removeClass('current-brand');
+//     const dateInput = document.querySelector('.item-callback-date')
+//     const timeInput = document.querySelector('.item-callback-time')
 
-    $(this).addClass('current-brand');
-    $("#"+tab_id).addClass('current-brand');
-})
+//     dateInput.addEventListener('focus', () => {
+//         dateInput.setAttribute('type', 'date')
+//     })
+//     timeInput.addEventListener('focus', () => {
+//         timeInput.setAttribute('type', 'time')
+//     })
 
-var swiper = new Swiper(".mySwiperBrands", {
-    slidesPerView: 'auto',
-    spaceBetween: 20,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 40,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-    },
-  });
+//     if (hide) {
+//         dateInput.setAttribute('type', 'text')
+//         timeInput.setAttribute('type', 'text')
+//     }
 
-let gallerySlider = null
-let mediaQuery = 1000
+// }
 
-const checkWindowWidth = () => {
-    $(window).on('load resize', function () {
-        // Берём текущую ширину экрана
-        let windowWidth = $(this).innerWidth();
-
-        console.log('windowWidth', windowWidth)
-        
-        // Если ширина экрана меньше или равна mediaQuerySize(1024)
-        if (windowWidth <= mediaQuery) {
-          // Инициализировать слайдер если он ещё не был инициализирован
-          initializeSlider()
-        } else {
-          // Уничтожить слайдер если он был инициализирован
-          sliderDestroy()
-        }
-      });
-}
-
-checkWindowWidth()
-
-const initializeSlider = () => {
-    console.log('swiper-init')
-    gallerySlider = new Swiper(".mySwiperGallery", {
-        slidesPerView: 1,
-        spaceBetween: 10,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 1,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 1,
-            spaceBetween: 50,
-          },
-        },
-      });
-}
-
-const sliderDestroy = () => {
-    console.log('swiper-destroy')
-    gallerySlider.destroy()
-}
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 5,
-    spaceBetween: 10,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 5,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 5,
-        spaceBetween: 40,
-      },
-      1024: {
-        slidesPerView: 5,
-        spaceBetween: 50,
-      },
-    },
-  });
-
-const checkdataCount = () => {
-	const countAttrs = document.querySelectorAll('.top-block-icon')
-
-	countAttrs.forEach(item => {
-		const attr = item.getAttribute('data-count')
-		if (Number(attr) <= 0) {
-			item.classList.add('hide-count')
-		}
-
-	})
-}
-checkdataCount()
+// togleItemTimePicker()
 
 
-const toggleCatalogMenu = () => {
-	const catalogBtn = document.querySelector('.catalog-btn')
-	const catalogMenu = document.querySelector('.catalog-menu ')
 
-	catalogBtn.addEventListener('click', () => {
-		catalogBtn.classList.toggle('catalog-btn-active')
-		catalogMenu.classList.toggle('catalog-active')
-	})
+let date = new AirDatepicker('#input', {
+    timepicker: true,
+    minHours: 8,
+    maxHours: 16,
+    minutesStep: 5,
+    weekends: [6, 0]
+});
 
-
-}
-toggleCatalogMenu()
-
-
-const checkOffsetTop = () => {
-  const header = document.querySelector('.section-top-season')
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-      header.classList.add('header-offset')
-    } else {
-      header.classList.remove('header-offset')
-    }
-  })
-}
-
-checkOffsetTop()
-$('.news-tab-item').click(function(){
-    var tab_id = $(this).attr('data-tab');
-
-    $('.news-tab-item').removeClass('current-tab');
-    $('.news-tabs-content').removeClass('current-tab');
-
-    $(this).addClass('current-tab');
-    $("#"+tab_id).addClass('current-tab');
-
-
-})
-
-var swiper = new Swiper(".mySwiperNews", {
-    slidesPerView: 'auto',
-    spaceBetween: 10,
-    freeMode: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-  },
-    breakpoints: {
-      640: {
-        slidesPerView: 'auto',
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 20,
-      },
-    },
-  });
+console.log('date', date)
 const toggleMobileMenu = () => {
-    const burger = document.querySelector('.burger')
+    const burger = document.querySelectorAll('.burger')
     const mobileMenu = document.querySelector('.mobile-menu')
     const body = document.body
 
-    burger.addEventListener('click', () => {
-        mobileMenu.classList.toggle('mobile-menu-active')
-        burger.classList.toggle('burger-active')
-        body.classList.toggle('fixed-body')
+    burger.forEach(item => {
+        item.addEventListener('click', () => {
+            mobileMenu.classList.toggle('mobile-menu-active')
+            burger.forEach(burgerMenu => {
+                burgerMenu.classList.toggle('burger-active')
+            })
+            body.classList.toggle('fixed-body')
+        })
     })
 }
 
@@ -279,88 +142,8 @@ const togleModalTimePicker = (hide = false) => {
 }
 
 togleModalTimePicker()
-var swiper = new Swiper(".mySwiperPopularCard", {
-    pagination: {
-      el: ".swiper-pagination",
-    },
-    spaceBetween: 10
-  });
-
-  var swiper = new Swiper(".mySwiperPopular", {
-    slidesPerView: 2,
-    pagination: {
-      el: ".swiper-pagination-main",
-    },
-    breakpoints: {
-      600: {
-        slidesPerView: 2,
-        spaceBetween: 10,
-        grid: {
-          rows: 2,
-          fill: "row",
-        },
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 10,
-        grid: {
-          rows: 2,
-          fill: "row",
-        },
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 10,
-        grid: {
-          rows: 2,
-          fill: "row",
-        },
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        grid: {
-          rows: 2,
-          fill: "row",
-        },
-      },
-    },
-    spaceBetween: 20,
-  });
-var swiper = new Swiper(".mySwiperObjects", {
-	pagination: {
-	  el: ".swiper-pagination",
-	},
-	navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-  });
-
-  $('.object-tab').click(function(){
-    var tab_id = $(this).attr('data-tab');
-
-    $('.object-tab').removeClass('object-current-tab');
-    $('.object-tab-content').removeClass('object-current-tab');
-
-    $(this).addClass('object-current-tab');
-    $("#"+tab_id).addClass('object-current-tab');
-
-
-})
-var swiper = new Swiper(".mySwiperTrust", {
-    slidesPerView: "auto",
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-    },
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-  });
-var swiper = new Swiper(".mySwiperSolutions", {
-    slidesPerView: 3,
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 5,
     spaceBetween: 10,
     pagination: {
       el: ".swiper-pagination",
@@ -368,7 +151,7 @@ var swiper = new Swiper(".mySwiperSolutions", {
     },
     breakpoints: {
       640: {
-        slidesPerView: 4,
+        slidesPerView: 5,
         spaceBetween: 20,
       },
       768: {
@@ -376,8 +159,83 @@ var swiper = new Swiper(".mySwiperSolutions", {
         spaceBetween: 40,
       },
       1024: {
-        slidesPerView: 9,
+        slidesPerView: 5,
         spaceBetween: 50,
       },
     },
   });
+
+const checkdataCount = () => {
+	const countAttrs = document.querySelectorAll('.top-block-icon')
+
+	countAttrs.forEach(item => {
+		const attr = item.getAttribute('data-count')
+		if (Number(attr) <= 0) {
+			item.classList.add('hide-count')
+		}
+
+	})
+}
+checkdataCount()
+
+
+const toggleCatalogMenu = () => {
+	const catalogBtn = document.querySelector('.catalog-btn')
+	const catalogMenu = document.querySelector('.catalog-menu ')
+
+	catalogBtn.addEventListener('click', () => {
+		catalogBtn.classList.toggle('catalog-btn-active')
+		catalogMenu.classList.toggle('catalog-active')
+	})
+
+
+}
+toggleCatalogMenu()
+
+
+const checkOffsetTop = () => {
+  const header = document.querySelector('.section-top-season')
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      header.classList.add('header-offset')
+    } else {
+      header.classList.remove('header-offset')
+    }
+  })
+}
+
+checkOffsetTop()
+
+const checkOffsetTopMobile = () => {
+  const header = document.querySelector('.scrolled-header-mobile')
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled-header-mobile-active')
+    } else {
+      header.classList.remove('scrolled-header-mobile-active')
+    }
+  })
+}
+
+checkOffsetTopMobile()
+const closeCallbackSuccess = () => {
+    let layout = document.querySelector('.item-callback-success-layout')
+    let close = document.querySelector('.callback-success-close')
+
+    close.addEventListener('click', () => {
+        layout.classList.remove('callback-success-active')
+    })
+}
+
+closeCallbackSuccess()
+
+const openCallbackSuccess = () => {
+    let layout = document.querySelector('.item-callback-success-layout')
+    let btn = document.querySelector('.item-callback-form__btn')
+
+    btn.addEventListener('click', () => {
+        layout.classList.add('callback-success-active')
+    })
+}
+
+openCallbackSuccess()
